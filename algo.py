@@ -40,28 +40,27 @@ import pandas as pd
 import logbook
 log = logbook.Logger('algo')
 
-# Set any algorithm 'constants' you will be using
-MIN_CASH = 25.00
-MIN_ADJUST_AMT = 200.00
-
-
-# Here we specify the ETFs and their associated weights
-# Ensure the weights sum to 1.0
-MY_ETFS = pd.DataFrame.from_items(
-        [
-            (symbol('TYD'), [0.1]), # Daily 7-10 Year Treasury Bull 3X Shares
-            (symbol('TMF'), [0.2]), # Daily 20+ Year Treasury Bull 3X Shares
-            (symbol('EDZ'), [0.2]), # Daily MSCI Emerging Markets Bear 3X Shares
-            (symbol('SPXL'), [0.5]), # Daily S&P 500 Bull 3X Shares
-        ],
-        columns = ['weight'], orient='index')
-
-
 def initialize(context):
 
     '''
     Called once at the start of the algorithm.
     '''
+    # Set any algorithm 'constants' you will be using
+    MIN_CASH = 25.00
+    MIN_ADJUST_AMT = 200.00
+
+
+    # Here we specify the ETFs and their associated weights
+    # Ensure the weights sum to 1.0
+    MY_ETFS = pd.DataFrame.from_items(
+            [
+                (symbol('TYD'), [0.1]), # Daily 7-10 Year Treasury Bull 3X Shares
+                (symbol('TMF'), [0.2]), # Daily 20+ Year Treasury Bull 3X Shares
+                (symbol('EDZ'), [0.2]), # Daily MSCI Emerging Markets Bear 3X Shares
+                (symbol('SPXL'), [0.5]), # Daily S&P 500 Bull 3X Shares
+            ],
+            columns = ['weight'], orient='index')
+
     # Create a list of daily orders. Initially it's empty.
     context.todays_orders = []
 
