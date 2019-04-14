@@ -89,7 +89,7 @@ def my_pipeline(context):
     '''
     # Create filter for just the ETFs we want to trade
     # universe = StaticAssets(MY_ETFS.index)
-    universe = context.MY_ETFS.index
+    universe = context.MY_ETFS.index.tolist()
 
     # Create any factors we need
     # latest_price is just used in case we don't have current price for an asset
@@ -174,7 +174,7 @@ def update_stock_data(context, output_df, data):
 
     # Get the latest prices for all our securities
     # May want to account for possibility of price being NaN or 0?
-    output_df.latest_price = data.current(output_df.index, 'price')
+    output_df.latest_price = data.current(output_df.index.tolist(), 'price')
 
     # Determine portfolio value we want to call '100%'
     target_portfolio_value = context.portfolio.portfolio_value - MIN_CASH
@@ -182,7 +182,8 @@ def update_stock_data(context, output_df, data):
 
     # Calculate amounts (note the // operator is the python floor function)
     output_df.target_value = output_df.weight * target_portfolio_value
-    output_df.target_shares = output_df.target_value // output_df.latest_price
+    output_df.target_shares = output_df.target_value // output_df.
+
 
     output_df.order_shares = output_df.target_shares - output_df.held_shares
     output_df.order_value = output_df.order_shares.abs() * output_df.latest_price
