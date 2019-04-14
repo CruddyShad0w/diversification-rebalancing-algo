@@ -27,7 +27,7 @@ from zipline.pipeline import Pipeline
 
 # import built in factors and filters
 from pipeline_live.data.iex.factors import Latest
-from pipeline_live.data.polygon.filters import StaticAssets
+from pipeline_live.data.polygon.filters import StaticAssetsEmulation as StaticAssets
 from pylivetrader.finance.execution import LimitOrder
 
 # import any datasets we need

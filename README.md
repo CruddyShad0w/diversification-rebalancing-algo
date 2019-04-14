@@ -1,7 +1,7 @@
 # diversification-rebalancing-algo
 
 This directory contains an actual algorithm code that is converted
-from Quantopian source to pylivetrader code. [original.py](./original.py) is
+from Quantopian source (https://www.quantopian.com/posts/best-performing-algorithms) to pylivetrader code. [original.py](./original.py) is
 the code from Quantopian and you can still copy & paste it
 to your backtest IDE to see how it performs in the testing.
 
