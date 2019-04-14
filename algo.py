@@ -182,7 +182,7 @@ def update_stock_data(context, output_df, data):
 
     # Calculate amounts (note the // operator is the python floor function)
     output_df.target_value = output_df.weight * target_portfolio_value
-    output_df.target_shares = output_df.target_value // output_df.
+    output_df.target_shares = output_df.target_value // output_df.latest_price
 
 
     output_df.order_shares = output_df.target_shares - output_df.held_shares
