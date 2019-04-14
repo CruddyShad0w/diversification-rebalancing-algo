@@ -52,7 +52,7 @@ def initialize(context):
 
     # Here we specify the ETFs and their associated weights
     # Ensure the weights sum to 1.0
-    MY_ETFS = pd.DataFrame.from_items(
+    context.MY_ETFS = pd.DataFrame.from_items(
             [
                 (symbol('TYD'), [0.1]), # Daily 7-10 Year Treasury Bull 3X Shares
                 (symbol('TMF'), [0.2]), # Daily 20+ Year Treasury Bull 3X Shares
@@ -89,7 +89,7 @@ def my_pipeline(context):
     '''
     # Create filter for just the ETFs we want to trade
     # universe = StaticAssets(MY_ETFS.index)
-    universe = MY_ETFS.index
+    universe = context.MY_ETFS.index
 
     # Create any factors we need
     # latest_price is just used in case we don't have current price for an asset
@@ -119,7 +119,7 @@ def before_trading_start(context, data):
         order_shares = 0,
         target_value = 0.0,
         order_value = 0.0,
-        weight = MY_ETFS.weight,
+        weight = context.MY_ETFS.weight,
         last_price = 0.0
     )
 
