@@ -89,7 +89,7 @@ def my_pipeline(context):
     '''
     # Create filter for just the ETFs we want to trade
     # universe = StaticAssets(MY_ETFS.index)
-    universe = context.MY_ETFS.index.tolist()
+    universe = context.MY_ETFS.index
 
     # Create any factors we need
     # latest_price is just used in case we don't have current price for an asset
