@@ -27,7 +27,8 @@ from zipline.pipeline import Pipeline
 
 # import built in factors and filters
 from pipeline_live.data.iex.factors import Latest
-# from pipeline_live.data.polygon.filters import StaticAssetsEmulation as StaticAssets
+#NEED TO MAKE STATIC ASSETS FILTER
+from zipline.pipeline.filters import StaticAssets
 from pylivetrader.finance.execution import LimitOrder
 
 # import any datasets we need
@@ -88,8 +89,7 @@ def my_pipeline(context):
     Define the pipline data columns
     '''
     # Create filter for just the ETFs we want to trade
-    # universe = StaticAssets(MY_ETFS.index)
-    universe = tuple(context.MY_ETFS.index)
+    universe = StaticAssets(MY_ETFS.index)
 
     # Create any factors we need
     # latest_price is just used in case we don't have current price for an asset
@@ -174,7 +174,7 @@ def update_stock_data(context, output_df, data):
 
     # Get the latest prices for all our securities
     # May want to account for possibility of price being NaN or 0?
-    output_df.latest_price = data.current(output_df.index.tolist(), 'price')
+    output_df.latest_price = data.current(output_df.index, 'price')
 
     # Determine portfolio value we want to call '100%'
     target_portfolio_value = context.portfolio.portfolio_value - MIN_CASH
